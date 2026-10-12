@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-cream: #F5F1E8;
+  --color-cream-dark: #EBE5D5;
+  --color-forest: #2D4A3E;
+  --color-forest-dark: #1F352C;
+  --color-gold: #8B6F47;
+  --color-gold-dark: #6F5938;
+  --color-cocoa: #3E2D2A;
+
+  --color-ink: #1F2520;
+  --color-ink-soft: #4A554F;
+  --color-ink-muted: #8A8F8B;
+  --color-hairline: #E8E2D2;
+
+  --color-success: #5B8C5A;
+  --color-danger: #B5453E;
+  --color-warning: #D4A04C;
+
+  --font-sans: var(--font-ibm-plex-arabic), system-ui, sans-serif;
+
+  --radius-card: 22px;
+  --radius-input: 14px;
+  --radius-pill: 999px;
+}
+
+html, body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-ink-muted);
+}
+
+/* Hide arrows on number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Dark Mode Theme */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #0B0F19 !important;
+  color: #F8FAFC !important;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #FFFFFF !important;
+}
+
+.dark .bg-white {
+  background-color: #111827 !important;
+  color: #F8FAFC !important;
+}
+
+.dark .border-hairline {
+  border-color: #1F2937 !important;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #1F2937 !important;
+  color: #FFFFFF !important;
+  border-color: #374151 !important;
+}

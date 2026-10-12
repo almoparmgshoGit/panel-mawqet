@@ -1,0 +1,10 @@
+.vercel
+.env*.local
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+build/
+coverage/
+.next/
