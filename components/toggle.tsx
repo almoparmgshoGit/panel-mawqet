@@ -12,7 +12,12 @@ interface ToggleProps {
 }
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
-  ({ checked, onChange, size = 48, disabled, className, ...props }, ref) => {
+  ({ checked, onChange, size = 50, disabled, className, ...props }, ref) => {
+    const height = size / 2;
+    const padding = 3;
+    const thumbSize = height - padding * 2;
+    const travelDistance = size - thumbSize - padding * 2;
+
     return (
       <button
         ref={ref}
@@ -21,24 +26,26 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
         onClick={() => !disabled && onChange(!checked)}
         disabled={disabled}
         className={cn(
-          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors",
+          "relative inline-flex flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out",
           "focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-50",
-          checked ? "bg-forest" : "bg-cream border-hairline",
+          checked ? "bg-forest" : "bg-slate-300 dark:bg-slate-700",
           className
         )}
-        style={{ width: size, height: size / 2 }}
+        style={{
+          width: size,
+          height: height,
+        }}
         {...props}
       >
         <span
-          className={cn(
-            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-cream shadow-md transition-transform",
-            checked ? "translate-x-5" : "translate-x-0"
-          )}
+          className="absolute rounded-full bg-white shadow-md transition-transform duration-200 ease-in-out"
           style={{
-            width: size / 2 - 2,
-            height: size / 2 - 2,
-            transform: checked ? `translateX(${size / 2}px)` : "translateX(0)",
+            width: thumbSize,
+            height: thumbSize,
+            top: padding,
+            left: padding,
+            transform: checked ? `translateX(${travelDistance}px)` : `translateX(0px)`,
           }}
         />
       </button>
