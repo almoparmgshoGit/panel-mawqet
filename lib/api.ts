@@ -149,4 +149,19 @@ export const api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ enabled }),
     }).then(handleResponse),
+
+  // Auth
+  login: (data: { email: string; password: string }) =>
+    fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then(handleResponse),
+
+  updateCredentials: (data: { email: string; currentPassword: string; newEmail?: string; newPassword?: string }) =>
+    fetch(`${API_BASE}/auth/credentials`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then(handleResponse),
 };

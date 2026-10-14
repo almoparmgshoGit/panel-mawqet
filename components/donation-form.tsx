@@ -14,6 +14,25 @@ import {
 import { ImageUploader } from "./image-uploader";
 import { DonationCardPreview } from "./donation-card-preview";
 
+const COUNTRIES = [
+  { code: "", label: "جميع البلدان (عام - يظهر للجميع)" },
+  { code: "SA", label: "المملكة العربية السعودية (SA)" },
+  { code: "EG", label: "جمهورية مصر العربية (EG)" },
+  { code: "AE", label: "الإمارات العربية المتحدة (AE)" },
+  { code: "KW", label: "دولة الكويت (KW)" },
+  { code: "QA", label: "دولة قطر (QA)" },
+  { code: "BH", label: "مملكة البحرين (BH)" },
+  { code: "OM", label: "سلطنة عمان (OM)" },
+  { code: "JO", label: "المملكة الأردنية الهاشمية (JO)" },
+  { code: "LB", label: "لبنان (LB)" },
+  { code: "SY", label: "سوريا (SY)" },
+  { code: "IQ", label: "العراق (IQ)" },
+  { code: "MA", label: "المغرب (MA)" },
+  { code: "DZ", label: "الجزائر (DZ)" },
+  { code: "TN", label: "تونس (TN)" },
+  { code: "SD", label: "السودان (SD)" },
+];
+
 interface Props {
   initial?: Donation;
 }
@@ -28,6 +47,7 @@ export function DonationForm({ initial }: Props) {
   const [linkUrl, setLinkUrl] = useState(initial?.link_url ?? "");
   const [imageUrl, setImageUrl] = useState<string | null>(initial?.image_url ?? null);
   const [bgPalette, setBgPalette] = useState<DonationPalette>(initial?.bg_palette ?? "forest");
+  const [countryCode, setCountryCode] = useState(initial?.country_code ?? "");
   const [isActive, setIsActive] = useState(initial?.is_active ?? true);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -52,6 +72,7 @@ export function DonationForm({ initial }: Props) {
       link_url: linkUrl.trim(),
       bg_palette: bgPalette,
       is_active: isActive,
+      country_code: countryCode.trim() ? countryCode.trim().toUpperCase() : null,
     };
 
     try {
@@ -157,6 +178,20 @@ export function DonationForm({ initial }: Props) {
               {(Object.keys(PALETTE_LABEL) as DonationPalette[]).map((k) => (
                 <option key={k} value={k}>
                   {PALETTE_LABEL[k]}
+                </option>
+              ))}
+            </select>
+          </Field>
+
+          <Field label="الدولة المستهدفة">
+            <select
+              value={countryCode}
+              onChange={(e) => setCountryCode(e.target.value)}
+              className={inputClass}
+            >
+              {COUNTRIES.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {c.label}
                 </option>
               ))}
             </select>

@@ -80,12 +80,12 @@ export default function SettingsPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-ink">الإعدادات</h1>
-        <p className="text-ink-soft mt-1">إدارة ميزات التطبيق والمفاتيح العامة</p>
+        <p className="text-ink-soft mt-1">إدارة ميزات التطبيق</p>
       </div>
 
       {message && (
         <div
-          className={`mb-6 rounded-xl px-4 py-3 flex items-center gap-3 ${
+          className={`mb-6 rounded-2xl px-4 py-3 flex items-center gap-3 ${
             message.type === "success"
               ? "bg-success/10 border border-success/20 text-success"
               : "bg-danger/10 border border-danger/20 text-danger"
@@ -96,6 +96,7 @@ export default function SettingsPage() {
         </div>
       )}
 
+      {/* Feature Flags Section */}
       <div className="bg-white rounded-3xl border border-hairline overflow-hidden">
         <div className="p-6 border-b border-hairline">
           <h2 className="text-xl font-bold text-ink">مفاتيح الميزات (Feature Flags)</h2>

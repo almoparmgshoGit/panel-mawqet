@@ -12,6 +12,7 @@ import {
   Flag,
   Sparkles,
   Settings,
+  User,
   LogOut,
   ChevronRight,
   ChevronLeft,
@@ -38,6 +39,7 @@ const NAV: NavItem[] = [
   { href: "/posts", label: "المنشورات", icon: Newspaper, enabled: true },
   { href: "/janazah", label: "الجنازات", icon: HeartCrack, enabled: true },
   { href: "/reports", label: "البلاغات", icon: Flag, enabled: true },
+  { href: "/profile", label: "الملف الشخصي", icon: User, enabled: true },
   { href: "/settings", label: "الإعدادات", icon: Settings, enabled: true },
 ];
 
@@ -49,6 +51,7 @@ export function Sidebar({ userEmail }: { userEmail: string }) {
   const { theme, toggleTheme } = useTheme();
 
   async function signOut() {
+    localStorage.removeItem("admin_email");
     router.push("/login");
     router.refresh();
   }

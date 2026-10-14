@@ -11,6 +11,7 @@ export interface Donation {
   bg_palette: DonationPalette;
   display_order: number;
   is_active: boolean;
+  country_code: string | null;
   created_at: string;
 }
 
@@ -22,6 +23,7 @@ export interface DonationInput {
   link_url: string;
   bg_palette: DonationPalette;
   is_active: boolean;
+  country_code?: string | null;
 }
 
 export const PALETTE_LABEL: Record<DonationPalette, string> = {

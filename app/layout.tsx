@@ -12,6 +12,10 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
 export const metadata: Metadata = {
   title: "لوحة تحكم مواقيت",
   description: "إدارة محتوى تطبيق مواقيت",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({
@@ -20,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={ibmPlexArabic.variable}>
-      <body className="min-h-screen">
+    <html lang="ar" dir="rtl" className={ibmPlexArabic.variable} suppressHydrationWarning>
+      <body className="min-h-screen" suppressHydrationWarning>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
